@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>忘年会 幹事ツール【割り勘計算＋幹事タイプ診断・1分無料】</title>
+<meta name="description" content="参加人数と会場代・景品予算を入れるだけで一人当たりの会費が一瞬でわかる割り勘計算と、4つの質問で「きっちり均等型」「気前よし型」「サプライズ仕込み型」「効率重視型」のどの幹事タイプかわかる無料診断。忘年会・新年会の幹事さん向け無料ツールです。">
+<meta name="keywords" content="忘年会 幹事,割り勘計算,忘年会 会費,幹事 タイプ診断,忘年会 景品,新年会 幹事">
+<link rel="canonical" href="https://bonenkai-kanji-tool.vercel.app/">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23b91c1c'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle'%3E%F0%9F%8D%BB%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="忘年会 幹事ツール【割り勘計算＋幹事タイプ診断・1分無料】">
+<meta property="og:description" content="参加人数と予算を入れるだけで一人当たりの会費が一瞬でわかる割り勘計算と、4つの質問でわかる幹事タイプ診断。忘年会・新年会の幹事さん向け無料ツールです。">
+<meta property="og:url" content="https://bonenkai-kanji-tool.vercel.app/">
+<meta property="og:image" content="https://bonenkai-kanji-tool.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="忘年会 幹事ツール【割り勘計算1分】">
+<meta name="twitter:description" content="参加人数と予算を入れるだけで一人当たりの会費がわかる忘年会幹事さん向け無料ツールです。">
+<meta name="twitter:image" content="https://bonenkai-kanji-tool.vercel.app/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"忘年会 幹事ツール","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"},"description":"参加人数・会場代・景品予算から一人当たりの会費を計算する割り勘計算ツールと、4つの質問で幹事タイプ（きっちり均等型・気前よし型・サプライズ仕込み型・効率重視型）を診断する無料Webツール。"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"忘年会の会費は一人当たりどれくらいが相場ですか？","acceptedAnswer":{"@type":"Answer","text":"居酒屋の飲み放題付きコースを使う場合、一人当たり3,500円〜5,000円程度が多い相場です。会場費に加えて景品代やビンゴ代を上乗せする場合は、その分を参加人数で割って会費に加算するのがおすすめです。"}},
+{"@type":"Question","name":"景品予算はどのくらい確保すればいいですか？","acceptedAnswer":{"@type":"Answer","text":"一般的には会費の10〜15%程度を景品予算に充てる幹事が多いです。例えば会費4,000円×20人なら8,000円の予算に対し、景品予算は8,000〜12,000円程度が目安になります。"}},
+{"@type":"Question","name":"幹事は参加費を割引・無料にするべきですか？","acceptedAnswer":{"@type":"Answer","text":"会社によって慣習は異なりますが、幹事の負担（準備・進行・景品購入の立て替えなど）を考慮して会費を一部免除・割引するケースは多くあります。参加者全員にその旨を事前に周知しておくとトラブルを避けられます。"}}
+]}
+</script>
+<style>
+  :root{--bg:#1a0e0e;--bg2:#2b1313;--card:#3a1a1a;--border:#7a2e2e;--text:#fdeee9;--muted:#e8c2b8;--accent:#b91c1c;--accent2:#fb923c;--good:#22c55e;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Hiragino Sans',sans-serif;line-height:1.7;}
+  a{color:var(--accent2);}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px 50px;}
+  header .logo{font-weight:900;font-size:1.1rem;padding:20px;border-bottom:1px solid var(--border);max-width:720px;margin:0 auto;}
+  header .logo span{color:var(--accent2);}
+  h1{font-size:1.4rem;margin:28px 0 8px;color:#fff;}
+  .sub{color:var(--muted);margin-bottom:22px;font-size:.95rem;}
+
+  .calc{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;margin-bottom:24px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+  @media(max-width:520px){.row2{grid-template-columns:1fr;}}
+  .field label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:5px;font-weight:600;}
+  .field input,.field select{width:100%;padding:12px 11px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:.95rem;min-height:44px;}
+  .calc-btn{width:100%;margin-top:10px;padding:16px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:800;font-size:1.05rem;cursor:pointer;min-height:48px;}
+
+  .result{margin-top:22px;padding-top:20px;border-top:1px dashed var(--border);display:none;}
+  .result.show{display:block;}
+  .result h3{color:#fff;font-size:1.25rem;margin-bottom:6px;}
+  .result p.desc{color:var(--muted);font-size:.9rem;margin-top:0;}
+  .bignum{font-size:2.1rem;font-weight:900;color:var(--accent2);margin:4px 0;}
+  .breakdown{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px;}
+  .breakdown span{background:var(--bg2);border:1px solid var(--border);color:var(--muted);font-size:.78rem;padding:4px 10px;border-radius:999px;}
+  .share-box{margin-top:18px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;}
+  .share-box .share-label{color:var(--text);font-weight:700;font-size:.92rem;margin:0 0 10px;}
+  .share-btn{display:inline-block;padding:12px 22px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:800;font-size:.92rem;cursor:pointer;min-height:44px;}
+  .share-box .share-copied{color:var(--good);font-size:.85rem;margin:10px 0 0;font-weight:700;}
+
+  .cta{margin:18px 0;padding:20px;background:linear-gradient(135deg,rgba(185,28,28,.25),rgba(58,26,26,.6));border:1px solid rgba(251,146,60,.35);border-radius:16px;}
+  .cta p{color:#fff2e9;margin:0 0 4px;font-weight:700;}
+  .cta small{color:var(--muted);}
+  .cta a.btn{display:inline-block;margin-top:10px;padding:13px 26px;border-radius:10px;background:var(--accent2);color:#2b1313;text-decoration:none;font-weight:800;font-size:.95rem;min-height:44px;}
+
+  section.guide{padding:26px 0;border-top:1px solid var(--border);margin-top:10px;}
+  section.guide h2{font-size:1.15rem;color:#fff;}
+  section.guide h3{font-size:1rem;color:#fff2e9;margin-top:20px;}
+  section.guide p{color:#f3ded6;font-size:.92rem;}
+  table.info{width:100%;border-collapse:collapse;margin:14px 0;font-size:.85rem;}
+  table.info td, table.info th{border:1px solid var(--border);padding:7px 9px;text-align:left;color:#f3ded6;}
+  table.info th{background:var(--card);color:#fff;}
+  .disclosure{font-size:.75rem;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin:20px 0;}
+  footer{padding:26px 0;border-top:1px solid var(--border);color:var(--muted);font-size:.8rem;text-align:center;}
+
+  .typebtn{display:block;width:100%;text-align:left;padding:14px 16px;margin-bottom:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:.92rem;cursor:pointer;min-height:44px;}
+  .typebtn:hover{border-color:var(--accent2);}
+</style>
+<script data-goatcounter="https://bonenkaikanjitool.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header><div class="logo">🍻 忘年会<span>幹事ツール</span></div></header>
+<div class="wrap">
+  <h1>忘年会 幹事ツール【割り勘計算＋幹事タイプ診断】</h1>
+  <p class="sub">参加人数・会場代・景品予算を入れるだけで一人当たりの会費が一瞬でわかる割り勘計算と、4つの質問でわかる幹事タイプ診断がセットになった、忘年会・新年会の幹事さん向け無料ツールです。</p>
+
+  <div class="calc">
+    <h2 style="font-size:1.05rem;color:#fff;margin:0 0 14px;">① 割り勘計算</h2>
+    <div class="row2">
+      <div class="field">
+        <label>参加人数</label>
+        <input type="number" id="people" value="20" min="1" max="500">
+      </div>
+      <div class="field">
+        <label>会場代の総額（概算・円）</label>
+        <input type="number" id="venueTotal" value="80000" min="0" step="1000">
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>景品・ビンゴ予算（円）</label>
+        <input type="number" id="prizeBudget" value="10000" min="0" step="1000">
+      </div>
+      <div class="field">
+        <label>幹事の会費</label>
+        <select id="kanjiFee">
+          <option value="full">全員と同じ会費を払う</option>
+          <option value="half" selected>幹事は半額にする</option>
+          <option value="free">幹事は無料にする</option>
+        </select>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calcWarikan()">一人当たりの会費を計算する →</button>
+
+    <div class="result" id="warikanResult">
+      <h3>一人当たりの会費</h3>
+      <div class="bignum" id="perHead">—</div>
+      <p class="desc" id="warikanDesc"></p>
+      <div class="breakdown" id="warikanBreak"></div>
+    </div>
+  </div>
+
+  <div class="calc">
+    <h2 style="font-size:1.05rem;color:#fff;margin:0 0 14px;">② 幹事タイプ診断（4問）</h2>
+    <div id="quizArea">
+      <p style="color:var(--muted);font-size:.88rem;margin:0 0 10px;" id="quizQ">Q1. 会費の集金方法は？</p>
+      <button class="typebtn" onclick="answerQuiz(0,'kicchiri')">1円単位まで正確に割り勘にする</button>
+      <button class="typebtn" onclick="answerQuiz(0,'kimae')">細かいことは気にせず多めに集める</button>
+      <button class="typebtn" onclick="answerQuiz(0,'surprise')">景品やサプライズの準備に時間をかける</button>
+      <button class="typebtn" onclick="answerQuiz(0,'kouritsu')">会費アプリやフォームでサクッと済ませる</button>
+    </div>
+
+    <div class="result" id="quizResult">
+      <h3 id="quizTitle"></h3>
+      <p class="desc" id="quizDesc"></p>
+      <div class="breakdown" id="quizTags"></div>
+      <div class="share-box" id="shareBox">
+        <p class="share-label">📤 この診断結果をXでシェアする</p>
+        <button class="share-btn" onclick="copyShareText()">結果をコピーしてシェア →</button>
+        <p class="share-copied" id="shareCopied" style="display:none;">✅ コピーしました！Xに貼り付けて投稿してね</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <p>🎁 忘年会の景品・ビンゴ賞品をチェック</p>
+    <small>定番の家電・お菓子詰め合わせからハズレなしセットまで</small><br>
+    <a class="btn" href="https://hb.afl.rakuten.co.jp/hgc/55a43f8e.d3c105e6.55a43f8f.a9af72fc/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%E5%BF%98%E5%B9%B4%E4%BC%9A%20%E6%99%AF%E5%93%81%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2F" target="_blank" rel="noopener sponsored">景品を探す →</a>
+  </div>
+
+  <div class="cta">
+    <p>🧧 集金・お礼に使えるギフト券</p>
+    <small>幹事さんへのお礼や景品の目玉賞品に人気</small><br>
+    <a class="btn" href="https://hb.afl.rakuten.co.jp/hgc/55a43f8e.d3c105e6.55a43f8f.a9af72fc/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%E3%82%AE%E3%83%95%E3%83%88%E5%88%B8%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2F" target="_blank" rel="noopener sponsored">ギフト券を見る →</a>
+  </div>
+
+  <div class="cta">
+    <p>🎉 二次会・余興で使えるパーティーグッズ</p>
+    <small>ビンゴカード・クラッカー・余興ゲームセット</small><br>
+    <a class="btn" href="https://hb.afl.rakuten.co.jp/hgc/55a43f8e.d3c105e6.55a43f8f.a9af72fc/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%E3%83%91%E3%83%BC%E3%83%86%E3%82%A3%E3%83%BC%E3%82%B0%E3%83%83%E3%82%BA%20%E5%BF%98%E5%B9%B4%E4%BC%9A%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2F" target="_blank" rel="noopener sponsored">パーティーグッズを見る →</a>
+  </div>
+
+  <section class="guide">
+    <h2>忘年会幹事の割り勘計算・景品予算の決め方</h2>
+    <p>忘年会の会費は「会場代＋景品予算」を参加人数で割るのが基本です。幹事自身の会費を軽減する場合は、その分を他の参加者の会費にわずかに上乗せするか、会社の福利厚生予算から補填してもらえるか確認しておくとスムーズです。</p>
+
+    <h3>会費の相場</h3>
+    <table class="info">
+      <tr><th>内容</th><th>一人当たりの目安</th></tr>
+      <tr><td>居酒屋コース（飲み放題付き）</td><td>3,500円〜5,000円</td></tr>
+      <tr><td>景品・ビンゴ代の上乗せ</td><td>500円〜1,000円</td></tr>
+      <tr><td>会場費のみ（持ち寄り等）</td><td>1,000円〜2,000円</td></tr>
+    </table>
+
+    <h3>景品予算は会費の10〜15%が目安</h3>
+    <p>景品・ビンゴの予算は、会費全体の10〜15%程度に収めるとバランスが取れます。1位の目玉賞品に予算を集中させ、残りはお菓子や文房具などの参加賞で揃えると、満足度を保ちながらコストを抑えられます。</p>
+
+    <h3>集金はアプリやフォームを使うと幹事の負担が減る</h3>
+    <p>現金の手集金は人数が多いほど手間がかかります。QRコード決済や会費回収フォームを使えば、誰が払い済みかも一覧で管理できるため、20人を超える規模の忘年会では特におすすめです。</p>
+  </section>
+
+  <div class="disclosure">
+    本ツールの計算結果・診断結果は簡易的な目安であり、実際の会費・予算は会場や参加者の状況に応じて調整してください。当サイトは楽天アフィリエイトプログラムに参加しており、リンク経由の購入で紹介料を得ることがあります。
+  </div>
+
+  <footer>
+    &copy; 2026 忘年会 幹事ツール
+  </footer>
+</div>
+
+<script>
+function calcWarikan(){
+  var people = parseInt(document.getElementById('people').value) || 1;
+  var venue = parseFloat(document.getElementById('venueTotal').value) || 0;
+  var prize = parseFloat(document.getElementById('prizeBudget').value) || 0;
+  var kanjiFee = document.getElementById('kanjiFee').value;
+
+  var total = venue + prize;
+  var payingHeads = people;
+  var kanjiDiscount = 0;
+  if(kanjiFee === 'half'){ payingHeads = people - 0.5; }
+  else if(kanjiFee === 'free'){ payingHeads = people - 1; }
+  if(payingHeads < 1) payingHeads = 1;
+
+  var perHead = Math.ceil((total / payingHeads) / 100) * 100;
+
+  document.getElementById('perHead').textContent = '¥' + perHead.toLocaleString();
+  document.getElementById('warikanDesc').textContent = '会場代' + venue.toLocaleString() + '円＋景品予算' + prize.toLocaleString() + '円＝合計' + total.toLocaleString() + '円を、参加' + people + '人で割った目安額です。';
+
+  var breakHtml = '';
+  breakHtml += '<span>会場代 ' + venue.toLocaleString() + '円</span>';
+  breakHtml += '<span>景品予算 ' + prize.toLocaleString() + '円</span>';
+  breakHtml += '<span>合計 ' + total.toLocaleString() + '円</span>';
+  if(kanjiFee !== 'full') breakHtml += '<span>幹事割引あり</span>';
+  document.getElementById('warikanBreak').innerHTML = breakHtml;
+
+  document.getElementById('warikanResult').classList.add('show');
+  document.getElementById('warikanResult').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+var quizStep = 0;
+var quizScore = {kicchiri:0, kimae:0, surprise:0, kouritsu:0};
+var quizQuestions = [
+  {q:'Q2. 景品はどう選ぶ？', opts:[
+    ['予算内でコスパ重視', 'kicchiri'],
+    ['目玉賞品に予算を集中させる', 'kimae'],
+    ['手作り・サプライズ企画を混ぜる', 'surprise'],
+    ['ネットで即決・配送も簡単なものを選ぶ', 'kouritsu']
+  ]},
+  {q:'Q3. 当日の進行で大事にすることは？', opts:[
+    ['タイムスケジュールどおりに進める', 'kicchiri'],
+    ['みんなが楽しんでいるなら多少押してもOK', 'kimae'],
+    ['余興やサプライズのタイミングを一番大事にする', 'surprise'],
+    ['乾杯〜解散までを手短に効率よく進める', 'kouritsu']
+  ]},
+  {q:'Q4. 幹事を引いた時の気持ちは？', opts:[
+    ['責任を持って完璧にやり切りたい', 'kicchiri'],
+    ['みんなが喜んでくれるのが一番の報酬', 'kimae'],
+    ['面白い仕掛けを考えるのが楽しい', 'surprise'],
+    ['最小限の労力で無難に終わらせたい', 'kouritsu']
+  ]}
+];
+
+function answerQuiz(step, type){
+  quizScore[type]++;
+  quizStep++;
+  if(quizStep < quizQuestions.length + 1){
+    var q = quizQuestions[quizStep - 1];
+    document.getElementById('quizQ').textContent = q.q;
+    var area = document.getElementById('quizArea');
+    var html = '<p style="color:var(--muted);font-size:.88rem;margin:0 0 10px;" id="quizQ">' + q.q + '</p>';
+    q.opts.forEach(function(opt){
+      html += '<button class="typebtn" onclick="answerQuiz(' + quizStep + ',\'' + opt[1] + '\')">' + opt[0] + '</button>';
+    });
+    area.innerHTML = html;
+  }
+  if(quizStep === quizQuestions.length + 1){
+    showQuizResult();
+  }
+}
+
+function showQuizResult(){
+  document.getElementById('quizArea').style.display = 'none';
+  var best = 'kicchiri', bestScore = -1;
+  for(var k in quizScore){ if(quizScore[k] > bestScore){ bestScore = quizScore[k]; best = k; } }
+
+  var title, desc, tags;
+  if(best === 'kicchiri'){
+    title = '「きっちり均等型」幹事です';
+    desc = '会費も進行も1円単位・1分単位でキッチリ管理できる、参加者から信頼される幹事タイプです。計算ツールで出した会費をそのまま案内すればスムーズに進みます。';
+    tags = ['正確さNo.1', '信頼される幹事', '計画通りに進める'];
+  } else if(best === 'kimae'){
+    title = '「気前よし型」幹事です';
+    desc = '細かい計算より、参加者みんなが楽しむことを優先する太っ腹な幹事タイプです。景品の目玉賞品に予算を厚めに配分すると満足度がさらに上がります。';
+    tags = ['太っ腹', '参加者満足度重視', '目玉賞品にこだわる'];
+  } else if(best === 'surprise'){
+    title = '「サプライズ仕込み型」幹事です';
+    desc = '余興や景品にひと工夫加えることにこだわる、企画力のある幹事タイプです。当日の進行表に5〜10分のサプライズタイムを組み込んでおくのがおすすめです。';
+    tags = ['企画力No.1', '余興・サプライズ重視', '盛り上げ上手'];
+  } else {
+    title = '「効率重視型」幹事です';
+    desc = '会費集金から当日の進行まで、最小限の手間でスムーズに終わらせることを大事にする幹事タイプです。会費アプリやオンラインフォームを活用すると、さらに手間を減らせます。';
+    tags = ['効率的', '手間を減らす工夫が得意', 'サクサク進行'];
+  }
+
+  document.getElementById('quizTitle').textContent = title;
+  document.getElementById('quizDesc').textContent = desc;
+  var tagHtml = '';
+  tags.forEach(function(t){ tagHtml += '<span>' + t + '</span>'; });
+  document.getElementById('quizTags').innerHTML = tagHtml;
+  document.getElementById('quizResult').classList.add('show');
+  document.getElementById('quizResult').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function copyShareText(){
+  var title = document.getElementById('quizTitle').textContent;
+  var url = 'https://bonenkai-kanji-tool.vercel.app/';
+  var text = '忘年会の幹事タイプ診断、私は「' + title + '」でした🍻\n\nあなたはどのタイプ？→ ' + url;
+  navigator.clipboard.writeText(text).then(function(){
+    var el = document.getElementById('shareCopied');
+    el.style.display = 'block';
+    setTimeout(function(){ el.style.display = 'none'; }, 4000);
+  }).catch(function(){
+    window.prompt('このテキストをコピーしてXに投稿してください', text);
+  });
+}
+</script>
+</body>
+</html>
